@@ -1,6 +1,5 @@
 package com.example.core.di
 
-import com.example.core.data.DogApi
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -9,13 +8,11 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
-object DogRetrofitModule {
-
-    private const val BASE_URL = "https://api.thedogapi.com/"
+object RetrofitModule {
 
     @Provides
     @CoreScope
-    fun providesOkHttpClient(): DogApi {
+    fun providesRetrofit(): Retrofit.Builder {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.apply { level = HttpLoggingInterceptor.Level.BODY }
         val okHttpClient = OkHttpClient
@@ -24,10 +21,7 @@ object DogRetrofitModule {
             .build()
         val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(BASE_URL)
             .client(okHttpClient)
-            .build()
-        val api = retrofit.create(DogApi::class.java)
-        return api
+        return retrofit
     }
 }

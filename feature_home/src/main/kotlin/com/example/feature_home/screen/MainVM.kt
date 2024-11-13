@@ -4,14 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.core.domain.CatRepository
-import com.example.core.domain.DogRepository
+import com.example.feature_home.domain.GetCatUseCase
+import com.example.feature_home.domain.GetDogUseCase
 import javax.inject.Inject
 import kotlinx.coroutines.launch
 
 class MainVM @Inject constructor(
-    private val catRepository: CatRepository,
-    private val dogRepository: DogRepository
+    private val getCatUseCase: GetCatUseCase,
+    private val getDogUseCase: GetDogUseCase
 ) : ViewModel() {
 
     private val _cat = MutableLiveData<String>()
@@ -22,13 +22,13 @@ class MainVM @Inject constructor(
 
     fun getCat() {
         viewModelScope.launch {
-            _cat.value = catRepository.getCats().first().image
+            _cat.value = getCatUseCase.invoke().image
         }
     }
 
     fun getDog() {
         viewModelScope.launch {
-            _dog.value = dogRepository.getDogs().first().image
+            _dog.value = getDogUseCase.invoke().image
         }
     }
 }

@@ -1,8 +1,8 @@
-package com.example.core.data
+package com.example.feature_home.data
 
-import com.example.core.domain.DogRepository
-import com.example.core.domain.toDomain
-import com.example.core.model.Dog
+import com.example.feature_home.model.Dog
+import com.example.feature_home.domain.DogRepository
+import com.example.feature_home.domain.toDomain
 import javax.inject.Inject
 
 class DogRepositoryImpl @Inject constructor(

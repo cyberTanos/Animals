@@ -1,24 +1,17 @@
 package com.example.core.di
 
-import com.example.core.domain.CatRepository
-import com.example.core.domain.DogRepository
 import dagger.Component
 import javax.inject.Scope
+import retrofit2.Retrofit
 
 @CoreScope
 @Component(
     modules = [
-        CatRetrofitModule::class,
-        DogRetrofitModule::class,
-        CatRepositoryModule::class,
-        DogRepositoryModule::class
+        RetrofitModule::class
     ]
 )
 interface CoreComponent {
-    /*val catApi: CatApi
-    val dogApi: DogApi*/
-    fun provideCatRepository(): CatRepository
-    fun provideDogRepository(): DogRepository
+    fun provideRetrofitBuilder(): Retrofit.Builder
 }
 
 @Scope

@@ -1,6 +1,6 @@
-package com.example.core.data
+package com.example.feature_home.data
 
-import com.example.core.data.response.CatResponse
+import com.example.feature_home.data.response.CatResponse
 import retrofit2.http.GET
 
 interface CatApi {

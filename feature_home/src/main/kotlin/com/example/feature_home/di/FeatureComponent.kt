@@ -8,8 +8,9 @@ import javax.inject.Scope
 @FeatureScope
 @Component(
     modules = [
-        /*CatRepositoryModule::class,
-        DogRepositoryModule::class,*/
+        ApiModule::class,
+        RepositoryModule::class,
+        UseCaseModule::class,
         ViewModelModule::class],
     dependencies = [
         CoreComponent::class

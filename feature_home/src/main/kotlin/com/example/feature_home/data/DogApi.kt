@@ -1,6 +1,6 @@
-package com.example.core.data
+package com.example.feature_home.data
 
-import com.example.core.data.response.DogResponse
+import com.example.feature_home.data.response.DogResponse
 import retrofit2.http.GET
 
 interface DogApi {

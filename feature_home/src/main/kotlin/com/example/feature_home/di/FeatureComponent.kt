@@ -11,7 +11,8 @@ import javax.inject.Scope
         ApiModule::class,
         RepositoryModule::class,
         UseCaseModule::class,
-        ViewModelModule::class],
+        /**ViewModelModule::class*/
+    ],
     dependencies = [
         CoreComponent::class
     ]

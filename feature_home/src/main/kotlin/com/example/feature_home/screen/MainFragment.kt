@@ -5,12 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.example.core.di.CoreProvider
 import com.example.feature_home.R
 import com.example.feature_home.databinding.FragmentMainBinding
 import com.example.feature_home.di.DaggerFeatureComponent
+import com.example.feature_home.screen.MainVM.MainVMFactory
 import javax.inject.Inject
 
 class MainFragment : Fragment(R.layout.fragment_main) {
@@ -19,16 +20,16 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private val binding get() = _binding!!
 
     @Inject
-    lateinit var vmFactory: ViewModelProvider.Factory
+    lateinit var vmFactory: MainVMFactory.Factory
 
-    private val vm: MainVM by lazy {
-        ViewModelProvider(this, vmFactory)[MainVM::class.java]
+    private val vm by viewModels<MainVM> {
+        val coreComponent = (requireActivity().application as CoreProvider).getCoreComponent()
+        DaggerFeatureComponent.factory().create(coreComponent).inject(this)
+        vmFactory.getID(0)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
-        val coreComponent = (requireActivity().application as CoreProvider).getCoreComponent()
-        DaggerFeatureComponent.factory().create(coreComponent).inject(this)
         observeVM()
         bindUI()
         return binding.root

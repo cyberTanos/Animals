@@ -32,6 +32,7 @@ class ViewModelFactory @Inject constructor(
 @Module
 abstract class ViewModelModule {
 
+    /**
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 
@@ -39,4 +40,5 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MainVM::class)
     abstract fun mainViewModel(viewModel: MainVM): ViewModel
+     */
 }

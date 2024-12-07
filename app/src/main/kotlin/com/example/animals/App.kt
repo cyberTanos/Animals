@@ -14,6 +14,7 @@ class App : Application(), CoreProvider {
         coreComponent = DaggerCoreComponent.create()
         // test - 1
         // test - 2
+        // test - 3
     }
 
     override fun getCoreComponent(): CoreComponent {

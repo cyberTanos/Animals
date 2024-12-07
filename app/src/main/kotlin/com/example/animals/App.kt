@@ -12,6 +12,7 @@ class App : Application(), CoreProvider {
     override fun onCreate() {
         super.onCreate()
         coreComponent = DaggerCoreComponent.create()
+        // test
     }
 
     override fun getCoreComponent(): CoreComponent {
